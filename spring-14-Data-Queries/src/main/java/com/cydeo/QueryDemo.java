@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class QueryDemo implements CommandLineRunner {
+
     private final RegionRepository regionRepository;
     private final DepartmentRepository departmentRepository;
 
@@ -29,5 +30,7 @@ public class QueryDemo implements CommandLineRunner {
         System.out.println("-----------DEPARTMENTS----------");
         System.out.println("findByDepartment:" + departmentRepository.findByDepartment("Furniture"));
         System.out.println("findByDivision:" + departmentRepository.findByDivision("Health"));
+        System.out.println("findByDivisionEndsWith:" + departmentRepository.findByDivisionEndsWith("ics"));
+        System.out.println("findDistinctTop3ByDivisionContains:" + departmentRepository.findDistinctTop3ByDivisionContains("Hea"));
     }
 }
