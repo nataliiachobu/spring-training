@@ -48,14 +48,17 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     // ------------------- Native QUERIES ------------------- //
 
     //Write a native query to read all accounts with an age lower than a specific value
-    @Query(value = "select * from account where age =?1" , nativeQuery = true)
+    @Query(value = "select * from account where age =?1", nativeQuery = true)
     List<Account> retrieveAllAccountsLowerThan(int specificAge);
 
 
-    //Write a native query to read all accounts that a specific value can be containable in the name, address, country, state city
-
+    //Write a native query to read all accounts that a specific value can be containable in the name,
+    //  address, country, state city
+    @Query(value = "select first_name, address,country,state,city = ?1", nativeQuery = true)
+    List<Account> retrieveAllAccountsContainNameAddressCountryStateCity(String value);
 
     //Write a native query to read all accounts with an age higher than a specific value
+    @Query(value =" select *  from account where age>=?1" , nativeQuery = true)
 
-
+    List<Account> retrieveAllAccountsAgeHigherThan(int age);
 }
