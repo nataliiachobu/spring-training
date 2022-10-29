@@ -38,8 +38,8 @@ public interface CinemaRepository extends JpaRepository<Cinema, Long> {
 
     //Write a native query to read all cinemas by name or sponsored name contains a specific pattern
 
-    @Query(value = "read * from cinema where name or sponsored_name =?1", nativeQuery = true)
-    List<Cinema> readAllByNameOrSponsoredName(String pattern);
+    @Query(value = "read * from cinema where name=?1 or sponsored_name =?1", nativeQuery = true)
+    List<Cinema> readAllByNameOrSponsoredName(String name,String sponsoredName);
 
 
     //Write a native query to sort all cinemas by name
@@ -47,6 +47,6 @@ public interface CinemaRepository extends JpaRepository<Cinema, Long> {
     List<Cinema> cinemasSortedByName();
 
     //Write a native query to distinct all cinemas by sponsored name
-    @Query(value = " select * from cinema distinct by sponsored_name=?1", nativeQuery = true)
+    @Query(value = " select  distinct  sponsored_name from cinema", nativeQuery = true)
     List<Cinema> distinctAllCinemasBySponsoredName(String sponsoredName);
 }

@@ -34,7 +34,7 @@ public interface MovieCinemaRepository extends JpaRepository<MovieCinema, Long> 
     List<MovieCinema> findMovieCinemasByMovieContaining(String name);
 
     //Write a derived query to list all movie cinemas in a specific location name
-    List<MovieCinema> findMovieCinemasByName(String locationName);
+    List<MovieCinema> findAllByCinemaLocationName(String locationName);
 
     // ------------------- JPQL QUERIES ------------------- //
 
@@ -45,10 +45,11 @@ public interface MovieCinemaRepository extends JpaRepository<MovieCinema, Long> 
     // ------------------- Native QUERIES ------------------- //
 
     //Write a native query to count all movie cinemas by cinema id
-    @Query(value = "select * from movie_cinema where id=?1 ", nativeQuery = true)
+    @Query(value = "select count (*) from movie_cinema where cinema_id=?1 ", nativeQuery = true)
     List<MovieCinema> retrieveByCinemaId(Long id);
 
     //Write a native query that returns all movie cinemas by location name
+    @Query(value =" select * from movie_cinema where location_name=?1 ",nativeQuery = true)
 
-
+    List<MovieCinema> retrieveMovieCinemaByLocation(String location);
 }
